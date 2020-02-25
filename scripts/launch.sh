@@ -22,11 +22,9 @@ symlinkDataDir "backups"
 # Create and symlink common configuration files
 function symlinkConfigFile() {
     if [ ! -L "$1" ]; then
-        echo "Symlinking server config file $1"
+        echo "Symlinking config file $1"
         if [ -f "$1" ]; then
             mv "$1" "data/$1"
-        else
-            touch "data/$1"
         fi
         ln -nsf "data/$1" "$1"
     else
