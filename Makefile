@@ -1,4 +1,4 @@
-.SILENT:
+#.SILENT:
 .PHONY: list all %
 
 MODPACKS = $(shell find modpacks/* -maxdepth 0 -type d | sed 's!modpacks/\(.*\)!\1!' | sort | uniq)
@@ -36,6 +36,7 @@ define buildModpackVersion
 	$(eval downloadUrl := $(shell jq ".[\"$(2)\"]" $(call getConfigPath,$(1)) | tr -d '"'))
 	docker build . \
 		--tag ${USER}/minecraft-$(1):$(2) \
+		$(if $(filter $(2),$(call getLatestModpackVersion,$(1))),--tag ${USER}/minecraft-$(1):latest,) \
 		--build-arg SERVER_DOWNLOAD_URL=$(downloadUrl) \
 		--build-arg MODPACK=$(1)
 endef
