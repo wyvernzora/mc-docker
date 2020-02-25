@@ -35,7 +35,7 @@ endef
 define buildModpackVersion
 	$(eval downloadUrl := $(shell jq ".[\"$(2)\"]" $(call getConfigPath,$(1)) | tr -d '"'))
 	docker build . \
-		--tag ${USER}/$(1):$(2) \
+		--tag ${USER}/minecraft-$(1):$(2) \
 		--build-arg SERVER_DOWNLOAD_URL=$(downloadUrl) \
 		--build-arg MODPACK=$(1)
 endef
