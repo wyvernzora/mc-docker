@@ -26,9 +26,9 @@ rm "$TMPDIR/server.zip"
 numdirs=$(find * -maxdepth 0 -type d | wc -l)
 if [ "${numdirs}" -eq "1" ]; then
     echo "Moving minecraft files to $(pwd)"
-    for dir in $(ls); do
-        mv ${dir}/* ./
-        rmdir ${dir}
+    for dir in */; do
+        mv "${dir}"/* ./
+        rmdir "${dir}"
     done
 fi
 
