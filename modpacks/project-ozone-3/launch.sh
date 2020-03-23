@@ -1,6 +1,11 @@
 #!/bin/sh
 export SERVER_JAR=$(ls | grep 'forge-1.12.2-' | head -n 1)
 
+# Set up pack mode
+PACK_MODE=${PACK_MODE:-normal}
+echo "Setting up pack mode to be ${PACK_MODE}"
+sed -i -re "s/S:packMode=.+/S:packMode=${PACK_MODE}/g" config/packmode.cfg
+
 # You can edit these values if you wish.
 MIN_RAM=${MIN_RAM:-"1024M"}
 MAX_RAM=${MAX_RAM:-"4096M"}
