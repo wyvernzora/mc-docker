@@ -1,6 +1,7 @@
 {
     "name": "stoneblock-2",
     "versions": {
-        "1.15.0": "https://media.forgecdn.net/files/2727/712/FTBPresentsStoneblock2Server_1.15.0.zip"
+        "1.15.0": "https://media.forgecdn.net/files/2727/712/FTBPresentsStoneblock2Server_1.15.0.zip",
+        "1.16.0": "https://media.forgecdn.net/files/2792/352/FTBPresentsStoneblock2Server_1.16.0.zip"
     }
 }
