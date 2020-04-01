@@ -16,4 +16,4 @@ RUN "${CONFIG_ROOT}/scripts/setup.sh"
 USER minecraft
 EXPOSE 25565
 VOLUME "${SERVER_ROOT}/data"
-CMD ${CONFIG_ROOT}/launch.sh
+CMD ${CONFIG_ROOT}/scripts/launch.sh
