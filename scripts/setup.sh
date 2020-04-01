@@ -1,9 +1,6 @@
 #!/bin/sh
 set -e
 
-SERVER_ROOT=$(pwd)
-CONFIG_ROOT=$(dirname $0)
-
 echo "Server root: ${SERVER_ROOT}"
 echo "Config root: ${CONFIG_ROOT}"
 
@@ -15,11 +12,9 @@ adduser -D -G minecraft minecraft
 apk add --no-cache -U bash curl
 chmod -R u+s /bin
 
-# Download, extract and otherwise get the server files ready
-echo "Downloading server archive from ${SERVER_DOWNLOAD_URL}"
-curl "${SERVER_DOWNLOAD_URL}" -o "$TMPDIR/server.zip"
-unzip -o "$TMPDIR/server.zip"
-rm "$TMPDIR/server.zip"
+# Extract and otherwise get the server files ready
+unzip -o "${CONFIG_ROOT}/server.zip"
+rm "${CONFIG_ROOT}/server.zip"
 
 # If the server unzips into a wrapper directory, move all server files
 # out to server root
@@ -38,6 +33,7 @@ echo "eula=true" >> eula.txt
 
 # Run modpack-specific installation steps
 if [ -f ${CONFIG_ROOT}/modpack/setup.sh ]; then
+    echo "Executing modpack setup script"
     /bin/sh ${CONFIG_ROOT}/modpack/setup.sh
 fi
 

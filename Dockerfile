@@ -1,18 +1,16 @@
 FROM openjdk:8-jre-alpine
 LABEL author Denis Luchkin-Zhou <wyvernzora@gmail.com>
 
-ARG MODPACK
-ARG SERVER_DOWNLOAD_URL
 ARG SERVER_ROOT="/minecraft"
-ARG CONFIG_ROOT="/var/minecraft-scripts"
+ARG CONFIG_ROOT="/var/minecraft"
+ENV SERVER_ROOT "${SERVER_ROOT}"
 ENV CONFIG_ROOT "${CONFIG_ROOT}"
 
-COPY scripts/*.sh ${CONFIG_ROOT}/
-COPY modpacks/${MODPACK}/* ${CONFIG_ROOT}/modpack/
+COPY . ${CONFIG_ROOT}
 
 USER root
-WORKDIR /minecraft
-RUN "${CONFIG_ROOT}/setup.sh"
+WORKDIR ${SERVER_ROOT}
+RUN "${CONFIG_ROOT}/scripts/setup.sh"
 
 # Start the server
 USER minecraft
